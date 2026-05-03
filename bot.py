@@ -2,6 +2,7 @@ import discord
 import re
 import aiohttp
 import asyncio
+import os
 from discord.ext import commands
 from datetime import datetime
 
@@ -11,9 +12,9 @@ intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents, help_command=None)
 
 # ====================== CONFIG ======================
-CHANNEL_ID = 1500270252666388550   # Your channel
+CHANNEL_ID = 1500270252666388550
 YOUR_NAME = "ScamBlox"
-SCAN_INTERVAL = 300                # 5 minutes
+SCAN_INTERVAL = 300
 # ===================================================
 
 seen_scripts = set()
@@ -90,5 +91,9 @@ async def ping(ctx):
     await ctx.send(f"Pong! {round(bot.latency * 1000)}ms")
 
 if __name__ == "__main__":
-    TOKEN = "YOUR_BOT_TOKEN_HERE"   # Should be read from environment
+    TOKEN = os.getenv("MTUwMDI4NTc4NzM5OTI2MjQ2Mg.GsnjyJ.HAs4VjnG3TvSw7TPCkS_o_856StnzaBvVSCnnI")
+    if not TOKEN:
+        print("❌ TOKEN not found!")
+        exit(1)
+    print("✅ Token loaded!")
     bot.run(TOKEN)
