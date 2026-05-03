@@ -2,9 +2,10 @@ import discord
 import re
 import aiohttp
 import asyncio
-import os
 from discord.ext import commands
 from datetime import datetime
+from dotenv import load_dotenv
+import os
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -91,9 +92,10 @@ async def ping(ctx):
     await ctx.send(f"Pong! {round(bot.latency * 1000)}ms")
 
 if __name__ == "__main__":
-    TOKEN = os.getenv("MTUwMDI4NTc4NzM5OTI2MjQ2Mg.GsnjyJ.HAs4VjnG3TvSw7TPCkS_o_856StnzaBvVSCnnI")
+    load_dotenv()
+    TOKEN = os.getenv("TOKEN")
     if not TOKEN:
-        print("❌ TOKEN not found!")
+        print("❌ TOKEN not found in .env!")
         exit(1)
-    print("✅ Token loaded!")
+    print("✅ Token loaded from .env!")
     bot.run(TOKEN)
